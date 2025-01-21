@@ -1,14 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.HomePageFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:padding="16dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        tools:context=".HomeActivity">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Top Bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrow_left"
+                    android:contentDescription="Back button" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/search"
+                    android:contentDescription="Search button" />
+                <ImageView
+                    android:id="@+id/menuButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/list"
+                    android:contentDescription="Menu button"
+
+                    android:layout_marginEnd="8dp" />
+            </LinearLayout>
+
+            <!-- Categories -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/AllButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Home"
+                        android:backgroundTint="#E0E0E0"
+                        android:textColor="#000000"
+                        android:padding="8dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/CategoriesButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Categories"
+                        android:backgroundTint="#E0E0E0"
+                        android:textColor="#000000"
+                        android:padding="8dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/BrandsButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Brands"
+                        android:backgroundTint="#E0E0E0"
+                        android:textColor="#000000"
+                        android:padding="8dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/FavoritesButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Favorites"
+                        android:backgroundTint="#E0E0E0"
+                        android:textColor="#000000"
+                        android:padding="8dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/CartButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cart"
+                        android:backgroundTint="#E0E0E0"
+                        android:textColor="#000000"
+                        android:padding="8dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:layout_marginEnd="0dp"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Carousel -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="#E0E0E0"
+                android:contentDescription="Carousel placeholder"
+                android:scaleType="centerCrop" />
+
+            <!-- Dots for Carousel -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="8dp">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+
+                    android:layout_margin="4dp" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+
+                    android:layout_margin="4dp" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+
+                    android:layout_margin="4dp" />
+            </LinearLayout>
+
+            <!-- Popular Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Popular"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="8dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="#E0E0E0"
+                    android:contentDescription="Popular item placeholder"
+                    android:layout_marginEnd="8dp" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="#E0E0E0"
+                    android:contentDescription="Popular item placeholder"
+                    android:layout_marginEnd="8dp" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="#E0E0E0"
+                    android:contentDescription="Popular item placeholder" />
+            </LinearLayout>
+
+            <!-- Recommended Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recommended"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="#E0E0E0"
+                        android:contentDescription="Recommended item placeholder"
+                        android:layout_marginEnd="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Recommended item name"
+                            android:textSize="14sp"
+                            android:paddingBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Short description"
+                            android:textSize="12sp"
+                            android:textColor="#757575" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

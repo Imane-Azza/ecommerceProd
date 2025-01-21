@@ -2,65 +2,88 @@ package com.example.ecommerceprod.ui;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ecommerceprod.R;
+import com.example.ecommerceprod.ViewModels.UserViewModel;
+import com.example.ecommerceprod.databinding.FragmentSigninBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link signinFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class signinFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FragmentSigninBinding binding;
+    private UserViewModel userViewModel;
 
     public signinFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment signinFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static signinFragment newInstance(String param1, String param2) {
-        signinFragment fragment = new signinFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signin, container, false);
+        binding = FragmentSigninBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
+        // Observe LiveData for success or error
+        userViewModel.getStatus().observe(getViewLifecycleOwner(), status -> {
+            switch (status) {
+                case SUCCESS:
+//                    binding.progressBar.setVisibility(View.GONE);
+                    Toast.makeText(requireContext(), "Sign in successful!", Toast.LENGTH_SHORT).show();
+                    NavHostFragment.findNavController(this).navigate(R.id.action_signinFragment_to_itemProductFragment);
+                    break;
+                case ERROR:
+//                    binding.progressBar.setVisibility(View.GONE);
+                    Toast.makeText(requireContext(), "Sign in failed.", Toast.LENGTH_SHORT).show();
+                    break;
+                case LOADING:
+//                    binding.progressBar.setVisibility(View.VISIBLE);
+                    Toast.makeText(requireContext(), "Loading...", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        });
+
+        userViewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMessage -> {
+            if (errorMessage != null) {
+                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.btnLogin.setOnClickListener(v -> {
+            String email = binding.etEmail.getText().toString();
+            String password = binding.etPassword.getText().toString();
+
+
+            userViewModel.getUser().getValue().setEmail(email);
+            userViewModel.getUser().getValue().setPassword(password);
+
+            userViewModel.signIn();
+        });
+
+        binding.idSignInToSignUp.setOnClickListener(v ->
+                NavHostFragment.findNavController(this).navigate(R.id.action_signinFragment_to_signupFragment)
+        );
+
     }
 }

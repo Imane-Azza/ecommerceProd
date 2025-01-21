@@ -1,14 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_constraintBaseline_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
     tools:context=".ui.onBoardingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <!-- Background Image -->
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:contentDescription="Background image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/onboardimg2" />
+
+    <!-- Foreground Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Text Section -->
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="sans-serif"
+            android:text="Good Skin"
+            android:textColor="@color/dark_brown"
+            android:textSize="34sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="sans-serif"
+            android:text="Good Mood"
+            android:textColor="@color/dark_brown"
+            android:textSize="34sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif"
+            android:text="Good Day"
+            android:textColor="@color/dark_brown"
+            android:textSize="34sp"
+            android:textStyle="italic" />
+
+        <!-- Button -->
+
+        <!-- Ignore text -->
+
+        <Button
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/gray_green"
+            android:text="Create your account  ->"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/idIgnoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Ignore"
+            android:textColor="@color/dark_brown"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
 
 </FrameLayout>
