@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray_green">#9A9B87</color>
+    <color name="beige">#DBD0C5</color>
+    <color name="light_coral">#E4C6BD</color>
+    <color name="dusty_rose">#AD8E85</color>
+    <!-- App Theme Colors -->
+    <color name="primary_grey">#9A9B87</color> <!-- Primary Grey -->
+    <color name="light_beige">#DBD0C5</color> <!-- Light Beige -->
+    <color name="peach">#E4C6BD</color> <!-- Peach -->
+    <color name="light_brown">#AD8E85</color> <!-- Dark Brown -->
+    <color name="dark_brown">#654321</color>
+    <color name="greygreen">#8A9A5B</color>
+
 </resources>
